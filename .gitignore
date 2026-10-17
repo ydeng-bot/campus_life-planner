@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 .DS_Store
 node_modules/
 .vscode/
 *.log
-=======
-.DS_Store
-node_modules/
-.vscode/
-*.log
->>>>>>> 8705a5a86259e4ab107ad2b30268c17287142930
