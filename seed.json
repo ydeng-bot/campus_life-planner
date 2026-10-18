@@ -1,29 +1,101 @@
 [
     {
-        "id": "rec-001",
+        "id": "rec_0001",
         "title": "Algorithms Final Project",
-        "duration": 4.5,
-        "date": "2026-10-20",
-        "tag": "computer Science",
-        "createdAt": "2026-10-01T10:00:00:000Z",
-        "updatedAt": "2026-10-01T10:00:00:000Z"
+        "duration": 270,
+        "dueDate": "2026-10-20",
+        "tag": "Computer Science",
+        "createdAt": "2026-10-01T10:00:00.000Z",
+        "updatedAt": "2026-10-01T10:00:00.000Z"
     },
     {
-        "id": "rec-002",
+        "id": "rec_0002",
         "title": "Physics Lab Report",
-        "duration": 2.0,
-        "date": "2026-10-18",
+        "duration": 120,
+        "dueDate": "2026-10-18",
         "tag": "Science",
         "createdAt": "2026-10-02T11:00:00.000Z",
         "updatedAt": "2026-10-02T11:00:00.000Z"
     },
     {
-        "id": "rec-003",
+        "id": "rec_0003",
         "title": "Study Group Review",
-        "duration": 1.5,
-        "date": "2026-10-19",
+        "duration": 90,
+        "dueDate": "2026-10-17",
         "tag": "General",
         "createdAt": "2026-10-03T12:00:00.000Z",
         "updatedAt": "2026-10-03T12:00:00.000Z"
+    },
+    {
+        "id": "rec_0004",
+        "title": "Calculus quick quiz",
+        "duration": 5,
+        "dueDate": "2026-10-16",
+        "tag": "Math",
+        "createdAt": "2026-10-04T09:00:00.000Z",
+        "updatedAt": "2026-10-04T09:00:00.000Z"
+    },
+    {
+        "id": "rec_0005",
+        "title": "Revise the the chemistry notes",
+        "duration": 180,
+        "dueDate": "2026-10-15",
+        "tag": "Chemistry",
+        "createdAt": "2026-10-05T14:30:00.000Z",
+        "updatedAt": "2026-10-05T14:30:00.000Z"
+    },
+    {
+        "id": "rec_0006",
+        "title": "Organic chemistry flashcards at 08:30",
+        "duration": 30.5,
+        "dueDate": "2026-10-14",
+        "tag": "Pre-med",
+        "createdAt": "2026-10-06T08:00:00.000Z",
+        "updatedAt": "2026-10-06T08:00:00.000Z"
+    },
+    {
+        "id": "rec_0007",
+        "title": "Leap day seminar",
+        "duration": 60,
+        "dueDate": "2024-02-29",
+        "tag": "Seminar",
+        "createdAt": "2024-02-01T10:00:00.000Z",
+        "updatedAt": "2024-02-01T10:00:00.000Z"
+    },
+    {
+        "id": "rec_0008",
+        "title": "Year-end portfolio marathon",
+        "duration": 1440,
+        "dueDate": "2026-12-31",
+        "tag": "Career",
+        "createdAt": "2026-10-07T16:00:00.000Z",
+        "updatedAt": "2026-10-07T16:00:00.000Z"
+    },
+    {
+        "id": "rec_0009",
+        "title": "Read <b>Chapter</b> 3 & \"notes\"",
+        "duration": 45,
+        "dueDate": "2026-10-13",
+        "tag": "Reading",
+        "createdAt": "2026-10-08T18:00:00.000Z",
+        "updatedAt": "2026-10-08T18:00:00.000Z"
+    },
+    {
+        "id": "rec_0010",
+        "title": "Coffee chat with advisor",
+        "duration": 15,
+        "dueDate": "2026-10-12",
+        "tag": "Advising",
+        "createdAt": "2026-10-09T13:00:00.000Z",
+        "updatedAt": "2026-10-09T13:00:00.000Z"
+    },
+    {
+        "id": "rec_0011",
+        "title": "New year check-in",
+        "duration": 0.5,
+        "dueDate": "2026-01-01",
+        "tag": "Admin",
+        "createdAt": "2026-01-01T00:00:00.000Z",
+        "updatedAt": "2026-01-01T00:00:00.000Z"
     }
 ]
