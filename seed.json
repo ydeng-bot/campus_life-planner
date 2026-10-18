@@ -1,0 +1,29 @@
+[
+    {
+        "id": "rec-001",
+        "title": "Algorithms Final Project",
+        "duration": 4.5,
+        "date": "2026-10-20",
+        "tag": "computer Science",
+        "createdAt": "2026-10-01T10:00:00:000Z",
+        "updatedAt": "2026-10-01T10:00:00:000Z"
+    },
+    {
+        "id": "rec-002",
+        "title": "Physics Lab Report",
+        "duration": 2.0,
+        "date": "2026-10-18",
+        "tag": "Science",
+        "createdAt": "2026-10-02T11:00:00.000Z",
+        "updatedAt": "2026-10-02T11:00:00.000Z"
+    },
+    {
+        "id": "rec-003",
+        "title": "Study Group Review",
+        "duration": 1.5,
+        "date": "2026-10-19",
+        "tag": "General",
+        "createdAt": "2026-10-03T12:00:00.000Z",
+        "updatedAt": "2026-10-03T12:00:00.000Z"
+    }
+]
