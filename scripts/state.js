@@ -11,10 +11,6 @@ export function getState() {
     return state;
 }
 
-export function getState() {
-    return state;
-}
-
 export function setRecords(newRecords) {
     state.records = newRecords; 
     saveRecords(state.records);
