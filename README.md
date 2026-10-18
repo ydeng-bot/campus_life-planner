@@ -1,6 +1,6 @@
-Campus Life Planner
+# Campus Life Planner
 
-Theme: Campus Life Planner: tasks and events with due dates, durations, and tags
+**Theme:** Campus Life Planner: tasks and events with due dates, durations, and tags
 
 **Live site:** https://ydeng-bot.github.io/campus_life-planner/
 
@@ -19,7 +19,7 @@ The project is built with vanilla HTML, CSS, and JavaScript using ES modules.
 - **Task management:** Add, edit, and delete tasks with a title, duration, due date, and tag. Invalid input displays inline error messages.
 - **Sorting:** Sort tasks by due date, title, or duration in ascending or descending order.
 - **Regular-expression search:** Search task titles, tags, and due dates using regular expressions. An Ignore case option is available, matching text is highlighted, and invalid patterns display an error instead of crashing the application. Duration is not included in search.
-- **Dashboard:** View the total number of tasks, total planned time, the top tag, and a chart showing tasks due in the past seven days.
+- **Dashboard:** View the total number of tasks, total planned time, the top tag, a progress bar showing time used against your time cap, and a chart showing time planned for tasks due in the past seven days.
 - **Settings:** Change whether durations are displayed in minutes or hours and adjust the time cap, which defaults to 20 hours.
 - **Duration handling:** Durations are entered and stored in minutes. The Settings unit changes only how durations are displayed.
 - **Local storage:** Save application data in the browser so it persists between visits.
@@ -39,7 +39,7 @@ The project is built with vanilla HTML, CSS, and JavaScript using ES modules.
 
 ## Regular Expression Catalog
 
-These patterns are defined in `scripts/validators.js`. The pipe characters in the table are escaped for Markdown table formatting; the actual JavaScript regex uses ordinary `|` alternation.
+These patterns are defined in `scripts/validators.js`.
 
 | Purpose | Pattern | Accepts | Rejects |
 |---|---|---|---|
@@ -48,6 +48,8 @@ These patterns are defined in `scripts/validators.js`. The pipe characters in th
 | Date format | `^\d{4}-(0[1-9]\|1[0-2])-(0[1-9]\|[12]\d\|3[01])$` | `2026-10-17` | `17-10-2026`, `2026-13-01` |
 | Tag | `^[A-Za-z]+(?:[ -][A-Za-z]+)*$` | `Computer Science`, `Club-Life` | `a1`, `-x` |
 | Duplicate word (back-reference) | `\b(\w+)\s+\1\b` | Flags `study study notes` | `study notes` |
+
+The pipe characters in the table are escaped for Markdown table formatting; the actual JavaScript regex uses ordinary `|` alternation.
 
 The title pattern uses a negative lookahead to reject consecutive spaces. The duplicate-word pattern uses a back-reference to detect the same word repeated consecutively. Both demonstrate advanced regular-expression features.
 
@@ -63,11 +65,11 @@ Search matches task titles, tags, and due dates.
 | `(exam\|quiz)` | Text containing `exam` or `quiz`. |
 | `\b\d{2}:\d{2}\b` | Time-like text such as `14:30`, if present in a searched field. |
 | `^(?=.*project)(?=.*\d)` | Text containing both `project` and a digit, using positive lookaheads. |
-| `(` | An invalid pattern that should display a search error instead of crashing the application. |
+| `(` | An invalid pattern that displays a search error instead of crashing the application. |
 
 ## Keyboard Navigation Map
 
-Use the keyboard to navigate the interactive controls. Confirm the behavior in the running application.
+The application can be used entirely from the keyboard.
 
 | Key | Action |
 |---|---|
@@ -124,16 +126,16 @@ The project uses JavaScript ES modules, which may not load correctly when `index
 
 The project includes an automated test page for checking application functionality, validation, search, duration conversion, record validation, and import error handling.
 
-**Automated test results: 34 tests passed.** The test file contains 34 checks; run the page to confirm the current result.
+**Automated test results: 34 tests passed.**
 
 ### Run the automated tests locally
 
 1. Open a terminal in the project directory.
 2. Start the local web server:
 
-   ```bash
+```bash
    python -m http.server 8000
-   ```
+```
 
 3. Open the test page in your browser:
 
@@ -183,3 +185,11 @@ campus_life-planner/
 │   └── exporter.js
 └── tests/
     └── cases.js
+```
+
+## Author
+
+**Yom Deng Garang**
+
+- **GitHub:** [ydeng-bot](https://github.com/ydeng-bot)
+- **Email:** y.deng@alustudent.com
