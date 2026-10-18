@@ -3,79 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus life planner</title>
-    <link rel="stylesheet" href=""styles/main.css">
-    <link rel="icon" href="assets/favicon.svg">
+    <title>Campus Life Planner</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%85%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-    < a href="#main-content" class="skip-link">skip to main content</a>
-    
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <header>
         <h1>Campus Life Planner</h1>
-        <nav>
-            <a href="#dashboard">Dashboard</a>
-            <a href="#records">Records</a>
-            <a href="tests.html">Tests</a>
+        <nav aria-label="Main">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#add">Add</a></li>
+                <li><a href="#records">Tasks</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="tests.html">Tests</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main id="main-content">
-        <div id="aria-live-status" class="sr-only" aria-live="polite"></div>
+    <main id="main-content" tabindex="-1">
+        <p id="live-status" class="status" role="status"></p>
 
-        <section id="dashboard">
-            <h2>Dashboard Stats</h2>
-            <p>Total Tasks: <span id="stat-count">0</span></p>
-            <p>Total duration: <span id="stat-duration">0 hrs</span></p>
-            <div>
-                <button id="export-btn">Export JSON</button>
-                <label for="import-file" style="display:inline-block; cursor:pointed; background:#2563eb; color:#fff; padding:0.4rem 0.8; border-radius:4px; font-size:0.9rem;">Import JSON</label>
-                <input type="file" id="import-file" accept=".json" style="display:none;">
-            </div>
+        <section id="about" aria-labelledby="about-heading">
+            <h2 id="about-heading">About</h2>
+            <p>Campus Life Planner helps students plan tasks and events, track how long each one takes, and stay under a weekly time cap. Add tasks with a due date, duration and tag, search them with regular expressions, and see your workload on the dashboard.</p>
+            <p>Built by Yom Deng Garang as a vanilla HTML, CSS and JavaScript project.</p>
+            <p>
+                Contact:
+                <a href="https://github.com/ydeng-bot">GitHub: ydeng-bot</a> &middot;
+                <a href="mailto:y.deng@alustudent.com">y.deng@alustudent.com</a>
+            </p>
         </section>
 
-        <section>
-            <h2>Add New Record</h2>
-            <form id="record-form">
-                <div>
+        <section id="dashboard" aria-labelledby="dashboard-heading">
+            <h2 id="dashboard-heading">Dashboard</h2>
+            <dl class="stats">
+                <div class="stat"><dt>Total tasks</dt><dd id="stat-count">0</dd></div>
+                <div class="stat"><dt>Total planned time</dt><dd id="stat-duration">0 hrs</dd></div>
+                <div class="stat"><dt>Top tag</dt><dd id="stat-top-tag">&mdash;</dd></div>
+                <div class="stat"><dt>Time cap</dt><dd id="stat-cap">20 hrs</dd></div>
+            </dl>
+
+            <div class="cap">
+                <progress id="cap-progress" max="100" value="0" aria-label="Share of time cap used"></progress>
+                <p id="cap-polite" role="status" aria-live="polite"></p>
+                <p id="cap-assertive" class="over" role="alert" aria-live="assertive"></p>
+            </div>
+
+            <h3>Last 7 days</h3>
+            <div id="trend" class="trend" role="img" aria-label="Time planned per day for the last 7 days"></div>
+        </section>
+
+        <section id="add" aria-labelledby="add-heading">
+            <h2 id="add-heading">Add new task</h2>
+            <form id="record-form" novalidate>
+                <div class="field">
                     <label for="title">Title</label>
-                    <input type="text" id="title" required>
+                    <input type="text" id="title" autocomplete="off" aria-required="true" aria-describedby="title-hint title-error" placeholder="Midterm revision">
+                    <p id="title-hint" class="hint"></p>
+                    <p id="title-error" class="error"></p>
                 </div>
-                <div>
-                    <label for="duration">Duration (hours)</label>
-                    <input type="text" id="date" required>
+                <div class="field">
+                    <label for="duration">Duration (minutes)</label>
+                    <input type="text" id="duration" inputmode="decimal" autocomplete="off" aria-required="true" aria-describedby="duration-error" placeholder="90">
+                    <p id="duration-error" class="error"></p>
                 </div>
-                <div>
+                <div class="field">
+                    <label for="dueDate">Due date (YYYY-MM-DD)</label>
+                    <input type="text" id="dueDate" inputmode="numeric" autocomplete="off" aria-required="true" aria-describedby="dueDate-error" placeholder="2026-10-25">
+                    <p id="dueDate-error" class="error"></p>
+                </div>
+                <div class="field">
                     <label for="tag">Tag</label>
-                    <input type="text" id="tag" required>
+                    <input type="text" id="tag" autocomplete="off" aria-required="true" aria-describedby="tag-error" placeholder="Computer Science">
+                    <p id="tag-error" class="error"></p>
                 </div>
-                <button type="submit" style="grid-column: span 2;">Save Record</button>
+                <div class="field full">
+                    <button type="submit">Save task</button>
+                </div>
             </form>
         </section>
 
-        <section id="records">
-            <h2>Records List</h2>
-            <input type="text" id="search-input" placeholder="search tasks or tags (Regex supported)..."style="width:100%; padding:0.5rem; margin-bottom:1rem; box-sizing:border-box;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Duration</th>
-                        <th>Date</th>
-                        <th>Tag</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="records-tbody"></tbody> 
-            </table>
-         </section>
-        </main>
+        <section id="records" aria-labelledby="records-heading">
+            <h2 id="records-heading" tabindex="-1">Tasks</h2>
 
-        <footer>
-            <p style="text-align:center; padding:1rem; color:#64748b;">Campus Life planner &copy; 2026</p>
-        </footer>
+            <div class="search-row">
+                <label for="search-input">Search (regex allowed)</label>
+                <input type="search" id="search-input" placeholder="e.g. ^lab|exam" autocomplete="off" spellcheck="false" aria-describedby="search-error">
+                <label class="inline"><input type="checkbox" id="case-toggle" checked> Ignore case</label>
+                <p id="search-error" class="error"></p>
+                <p id="result-count" class="hint" role="status"></p>
+            </div>
 
-        <script type="module" src="scripts/main.js"></script>
-        </body>
-        </html>                  
-            
-    
+            <div class="mobile-sort">
+                <label for="sort-select">Sort by</label>
+                <select id="sort-select">
+                    <option value="dueDate">Due date</option>
+                    <option value="title">Title</option>
+                    <option value="duration">Duration</option>
+                </select>
+                <button type="button" id="sort-dir" class="secondary">&uarr; Ascending</button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <caption class="sr-only">Planned tasks</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" data-field="title" aria-sort="none"><button type="button" class="sort-btn">Title <span class="arrow" aria-hidden="true">&harr;</span></button></th>
+                            <th scope="col" data-field="duration" aria-sort="none"><button type="button" class="sort-btn">Duration <span class="arrow" aria-hidden="true">&harr;</span></button></th>
+                            <th scope="col" data-field="dueDate" aria-sort="none"><button type="button" class="sort-btn">Due date <span class="arrow" aria-hidden="true">&harr;</span></button></th>
+                            <th scope="col">Tag</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-tbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="settings" aria-labelledby="settings-heading">
+            <h2 id="settings-heading">Settings</h2>
+            <form id="settings-form" novalidate>
+                <div class="field">
+                    <label for="unit">Display unit</label>
+                    <select id="unit">
+                        <option value="hours">Hours</option>
+                        <option value="minutes">Minutes</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="cap">Time cap (hours)</label>
+                    <input type="text" id="cap" inputmode="decimal" autocomplete="off" aria-describedby="cap-error">
+                    <p id="cap-error" class="error"></p>
+                </div>
+                <div class="field full">
+                    <button type="submit">Save settings</button>
+                </div>
+            </form>
+
+            <h3>Data</h3>
+            <div class="button-row">
+                <button type="button" id="export-btn" class="secondary">Export JSON</button>
+                <button type="button" id="sample-btn" class="secondary">Load sample data</button>
+            </div>
+            <div class="field">
+                <label for="import-file">Import JSON file</label>
+                <input type="file" id="import-file" accept=".json,application/json">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Campus Life Planner &copy; 2026</p>
+    </footer>
+
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
+           
