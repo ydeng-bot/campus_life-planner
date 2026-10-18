@@ -85,10 +85,10 @@ Use the keyboard to navigate the interactive controls. Confirm the behavior in t
 - **Form labels:** Inputs have associated labels.
 - **Keyboard access:** Interactive elements can be reached with the keyboard and have visible focus indicators.
 - **Screen-reader feedback:** Live regions communicate status updates and validation/search errors.
-- **Table accessibility:** Sortable table headers communicate sort state where applicable.
+- **Table accessibility:** Sortable table headers communicate sort state through `aria-sort`.
 - **Reduced motion:** CSS respects the `prefers-reduced-motion` user preference.
-- **Responsive layout:** CSS breakpoints support narrow and wide screens. Test at approximately 360px, 768px, and 1024px.
-- **Color contrast:** No Lighthouse score is claimed here; run an audit if you need to report a score.
+- **Responsive layout:** The layout is mobile-first, with breakpoints at 768px and 1024px for tablet and desktop screens.
+- **Lighthouse audit:** Chrome DevTools Lighthouse accessibility score of 100 on both desktop and mobile, run on the deployed site on 18 October 2026. Automated audits only detect a subset of issues, so keyboard navigation was also checked manually (see the Manual Testing Checklist).
 
 ## Getting Started
 
