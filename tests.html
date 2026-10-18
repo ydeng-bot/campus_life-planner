@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Campus Life Planner Test</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <main style="max-width: 600px; margin: 2rem auto; padding: 1rem; background: #fff; border-radius: 8px;">
+        <h1>Automated Test Suite</h1>
+        <ul id="test-list" style="list-style: none; padding: 0;"></ul>
+    </main>
+
+    <script type="module">
+        import { runTests } from './tests/cases.js';
+        const list = document.getElementById('test-list');
+
+        runTests().forEach(test => {
+            const li = document.createElement('li');
+            li.style.padding = '0.5rem 0';
+            li.style.borderBottom = '1px solid #eee';
+            li.style.display = 'flex';
+            li.style.justifyContent = 'space-between';
+            li.innerHTML = `<span>${test.name}</span> <strong style="color: ${test.passed ? 'green' : 'red'}">${test.passed ? 'PASS' : 'FAIL'}</strong>`;
+            list.appendChild(li);
+        });
+        </script>
+        </body>
+    </html>
